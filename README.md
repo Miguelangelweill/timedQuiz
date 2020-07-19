@@ -14,7 +14,7 @@ SO THAT I can gauge my progress compared to my peers
 
 ```
 GIVEN I am taking a code quiz
-[]WHEN I click the start button //ther for the main window that should be display is a button that say's "start quiz"
+[]WHEN I click the start button
 []THEN a timer starts and I am presented with a question
 []WHEN I answer a question
 []THEN I am presented with another question
@@ -29,6 +29,8 @@ GIVEN I am taking a code quiz
 The following animation demonstrates the application functionality:
 
 ![code quiz](./Assets/04-web-apis-homework-demo.gif)
+# My work
+* I have completed the main presentation of the page when it first opens, this page is entirely made with javascript.
 
 ### Review
 
