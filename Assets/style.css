@@ -1,0 +1,11 @@
+
+button:hover{
+    background-color: rgb(148, 179, 219);
+    
+}
+button{
+    margin:5%;
+}
+#startButton:hover{
+    background-color: rgb(148, 179, 219);
+}
