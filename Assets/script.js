@@ -96,6 +96,7 @@ var testQuestions = [
 var timeLeft = 45;
 var wrong = 0;
 var right = 0;
+var finalScore = right - wrong;
 var currentQuestion = 0;
 var interval;
 //HERE WE ARE CREATING A FUNCTION WITH THE INNER HTML THAT WILL BE DISPLAYED ON OUR SCREEN 
@@ -120,7 +121,7 @@ startButton.addEventListener("click", function (event) {
 displayQuestion()
   //THIS IS TE INTERVAL FOR HOW LONG THE TEST SHOULD LAST
   var mainTimeInterval = setInterval(function () {
-    if (timeLeft >= 0) {
+    if (timeLeft >= 0 ) {
       secondsLeft.textContent = "  Seconds left: " + timeLeft + " ";
       timeLeft--;
     } else if (currentQuestion == 3) {
