@@ -96,7 +96,7 @@ var testQuestions = [
 var timeLeft = 45;
 var wrong = 0;
 var right = 0;
-var finalScore = right - wrong;
+
 var currentQuestion = 0;
 var interval;
 //HERE WE ARE CREATING A FUNCTION WITH THE INNER HTML THAT WILL BE DISPLAYED ON OUR SCREEN 
@@ -109,7 +109,7 @@ function displayQuestion(){
     "<button class='button'>" + testQuestions[currentQuestion].options[1] + "</button>";
   //THIS IS THE HTML FOR WHEN THE TEST IS OVER
   var testOver = "<h1>" + "Test is over" + "</h1>";
-  testOver += "<h2>" + "this is your highest score " + finalScore + "</h2>";
+  testOver += "<h2>" + "this is your highest score " + "" + "</h2>";
   //THIS IS WHERE I APPEND THE FIRST HTML THAT IS DISPLAYED INSIDE OF THE SCREEN
   event = containerHandler.innerText = "";
   containerHandler.appendChild(mainHeader);
