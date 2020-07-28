@@ -1,7 +1,7 @@
 //NEXT STEP IS TO SEE IF I GO OUTSIDE OF THE ARRAY, BECAUSE RIGHT NOW THAT IS MY PROBLEM
-//WE ALSO MUST CHECK IF THE USER ALSO FINISHES BEFORE 
+//WE ALSO MUST CHECK IF THE USER ALSO FINISHES BEFORE
 
-//HERE I CREATE MY ELEMNTS 
+//HERE I CREATE MY ELEMNTS
 var bodyControl = document.body;
 var containerHandler = document.createElement("main");
 var mainHeader = document.createElement("h2");
@@ -93,62 +93,83 @@ var testQuestions = [
 ];
 
 // THESE ARE THE VARIABLES THAT KEEP THE TEST RUNNING
-var timeLeft = 45;
+var timeLeft = 50;
 var wrong = 0;
-var right = 0;
-
+var right = 0; 
 var currentQuestion = 0;
+var finalScore = 0;
 var interval;
-//HERE WE ARE CREATING A FUNCTION WITH THE INNER HTML THAT WILL BE DISPLAYED ON OUR SCREEN 
-function displayQuestion(){
+//HERE WE ARE CREATING A FUNCTION WITH THE INNER HTML THAT WILL BE DISPLAYED ON OUR SCREEN
+
+function displayQuestion() {
   var questionHtml =
     "<p>" + testQuestions[currentQuestion].testQuestions + "</p>";
   questionHtml +=
-    "<button class='button'>" + testQuestions[currentQuestion].options[0] + "</button>";
+    "<button class='button'>" +
+    testQuestions[currentQuestion].options[0] +
+    "</button>";
   questionHtml +=
-    "<button class='button'>" + testQuestions[currentQuestion].options[1] + "</button>";
-  //THIS IS THE HTML FOR WHEN THE TEST IS OVER
-  var testOver = "<h1>" + "Test is over" + "</h1>";
-  testOver += "<h2>" + "this is your highest score " + "" + "</h2>";
+    "<button class='button'>" +
+    testQuestions[currentQuestion].options[1] +
+    "</button>";  
   //THIS IS WHERE I APPEND THE FIRST HTML THAT IS DISPLAYED INSIDE OF THE SCREEN
   event = containerHandler.innerText = "";
   containerHandler.appendChild(mainHeader);
   containerHandler.children[0].innerHTML = questionHtml;
 }
+  //THIS IS THE HTML FOR WHEN THE TEST IS OVER
+function testFinished() {
+  var testOver = "<h1>" + "Test is over" + "</h1>";
+  testOver += "<h2>" + "this is your highest score " + "" + "</h2>";
+  testOver +="<p>"+"Wrong answers: "+wrong+"</p>"
+  testOver += "<p>" + "Right answers: " + right + "</p>"
+  testOver += "<p>" + "Final score: " + finalScore + "</p>"
+  return testOver;
+}
 //HERE I AM SEPERATING THE START BUTTON FROM THE QUESTION BUTTONS
 startButton.addEventListener("click", function (event) {
   //HERE I AM CALLING THE FUNCTION THAT DISPLAYES THE HTML FOR MY QUESTIONS AND DISPLAYES THE QUESTION DEPENDING ON ITS INDEX POSITION
-displayQuestion()
+  displayQuestion();
   //THIS IS TE INTERVAL FOR HOW LONG THE TEST SHOULD LAST
   var mainTimeInterval = setInterval(function () {
-    if (timeLeft >= 0 ) {
+    if (timeLeft >= 0) {
       secondsLeft.textContent = "  Seconds left: " + timeLeft + " ";
       timeLeft--;
-    } else if (currentQuestion == 3) {
-      containerHandler.children[0].innerHTML = testOver;
     }
   }, 1000);
 });
+function theWholeTest(){
+  if (currentQuestion < testQuestions.length) {
+    displayQuestion();
+  } else {
+    containerHandler.innerHTML = testFinished();
+  }
+}
 //HERE WE ARE ONLY LISTENING FOR THE CLICKS THAT COME FROM THE BUTTONS THAT HAVE A CLASS
 containerHandler.addEventListener("click", function (event) {
   //THIS IS WHERE I ACRUALLY TARGET THOSE BUTTONS
   if (event.target.matches(".button")) {
     var buttonClicked = event.target.innerText;
-  // I AM TELLING IT WHAT TO DO IF THE BUTTON THAT IS CLICKED IS EQUALS TO THE ANSWER
+    // I AM TELLING IT WHAT TO DO IF THE BUTTON THAT IS CLICKED IS EQUALS TO THE ANSWER
+
     if (buttonClicked == testQuestions[currentQuestion].answer) {
+      finalScore++
       currentQuestion++;
       right++;
       rightAnswer.textContent = " Right answers: " + right;
-      displayQuestion()
-    } else {
-      currentQuestion++;
-      timeLeft -= 5;
-      wrong++;
-      wrongAnswer.textContent = " Wrong answers: " + wrong;
-      displayQuestion()
-    }
+      theWholeTest();
+      } else {
+        finalScore--
+        currentQuestion++;
+        timeLeft -= 5;
+        wrong++;
+        wrongAnswer.textContent = " Wrong answers: " + wrong;
+        theWholeTest();
+
+      }
+    } 
   }
-});
+);
 //NOW I JUST NEED TO CONTROL IF THE USER FINISHES BEFORE TIME AND DISPLAY THE OVER SCREEN WITH THE FINAL RESULE
 
 //THEN SAVE THE LAST HIGHEST SCORE THE THE  LOCALLIBRARY
