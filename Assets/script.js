@@ -93,7 +93,7 @@ var testQuestions = [
 ];
 
 // THESE ARE THE VARIABLES THAT KEEP THE TEST RUNNING
-var timeLeft = 50;
+var timeLeft = 25;
 var wrong = 0;
 var right = 0; 
 var currentQuestion = 0;
@@ -135,6 +135,8 @@ startButton.addEventListener("click", function (event) {
     if (timeLeft >= 0) {
       secondsLeft.textContent = "  Seconds left: " + timeLeft + " ";
       timeLeft--;
+    }else{
+      containerHandler.innerHTML = testFinished();
     }
   }, 1000);
 });
