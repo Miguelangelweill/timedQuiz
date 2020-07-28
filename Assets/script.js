@@ -167,8 +167,10 @@ containerHandler.addEventListener("click", function (event) {
         theWholeTest();
 
       }
+    localStorage.setItem("Final score: ",JSON.stringify(finalScore));
     } 
   }
+  
 );
 //NOW I JUST NEED TO CONTROL IF THE USER FINISHES BEFORE TIME AND DISPLAY THE OVER SCREEN WITH THE FINAL RESULE
 
